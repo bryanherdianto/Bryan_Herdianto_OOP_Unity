@@ -31,53 +31,39 @@ public class PlayerMovement : MonoBehaviour
         Vector2 newVelocity = Vector2.zero;
 
         moveDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        Debug.Log(moveDirection);
 
-        if (moveDirection != Vector2.zero)
+        if (moveDirection.x != 0)
         {
-            newVelocity = rb.velocity + moveDirection * moveVelocity * Time.fixedDeltaTime;
+            newVelocity.x = moveDirection.x * moveVelocity.x * 0.5f + GetFriction().x * 0.01f;
         }
         else
         {
-            if (Mathf.Abs(rb.velocity.x) < stopClamp.x)
+            newVelocity.x = moveDirection.x * moveVelocity.x * 0.5f;
+
+            if (Mathf.Abs(newVelocity.x) < stopClamp.x)
             {
                 newVelocity.x = 0;
             }
+        }
 
-            if (Mathf.Abs(rb.velocity.y) < stopClamp.y)
+        if (moveDirection.y != 0)
+        {
+            newVelocity.y = moveDirection.y * moveVelocity.y * 0.5f + GetFriction().y * 0.01f;
+        }
+        else
+        {
+            newVelocity.y = moveDirection.y * moveVelocity.y * 0.5f;
+
+            if (Mathf.Abs(newVelocity.y) < stopClamp.y)
             {
                 newVelocity.y = 0;
-            }
-        }
-
-        if (moveDirection.x == 0)
-        {
-            if (newVelocity.x > 0)
-            {
-                newVelocity.x = Mathf.MoveTowards(newVelocity.x, 0, GetFriction().x * Time.fixedDeltaTime);
-            }
-            else if (newVelocity.x < 0)
-            {
-                newVelocity.x = Mathf.MoveTowards(newVelocity.x, 0, GetFriction().x * Time.fixedDeltaTime);
-            }
-        }
-
-        if (moveDirection.y == 0)
-        {
-            if (newVelocity.y > 0)
-            {
-                newVelocity.y = Mathf.MoveTowards(newVelocity.y, 0, GetFriction().y * Time.fixedDeltaTime);
-            }
-            else if (newVelocity.y < 0)
-            {
-                newVelocity.y = Mathf.MoveTowards(newVelocity.y, 0, GetFriction().y * Time.fixedDeltaTime);
             }
         }
 
         newVelocity.x = Mathf.Clamp(newVelocity.x, -maxSpeed.x, maxSpeed.x);
         newVelocity.y = Mathf.Clamp(newVelocity.y, -maxSpeed.y, maxSpeed.y);
 
-        rb.velocity = newVelocity;
+        rb.velocity = new Vector2(newVelocity.x, newVelocity.y);
     }
 
     public void MoveBound()
