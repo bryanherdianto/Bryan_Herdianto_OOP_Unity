@@ -27,10 +27,10 @@ public class Portal : MonoBehaviour
             weapon3 = weaponRack.transform.Find("Weapon3")?.gameObject;
             weapon4 = weaponRack.transform.Find("Weapon4")?.gameObject;
 
-            Debug.Log($"Weapon1 active: {weapon1?.activeSelf}");
-            Debug.Log($"Weapon2 active: {weapon2?.activeSelf}");
-            Debug.Log($"Weapon3 active: {weapon3?.activeSelf}");
-            Debug.Log($"Weapon4 active: {weapon4?.activeSelf}");
+            // Debug.Log($"Weapon1 active: {weapon1?.activeSelf}");
+            // Debug.Log($"Weapon2 active: {weapon2?.activeSelf}");
+            // Debug.Log($"Weapon3 active: {weapon3?.activeSelf}");
+            // Debug.Log($"Weapon4 active: {weapon4?.activeSelf}");
         }
         else
         {
@@ -50,7 +50,7 @@ public class Portal : MonoBehaviour
                 transform.position = new Vector2(0, -2f);
             }
 
-            Debug.Log($"Current Position: {transform.position}, Target: {newPosition}");
+            // Debug.Log($"Current Position: {transform.position}, Target: {newPosition}");
 
             transform.position = Vector2.MoveTowards(transform.position, newPosition, speed * Time.deltaTime);
             transform.Rotate(Vector3.forward * rotateSpeed * Time.deltaTime);
