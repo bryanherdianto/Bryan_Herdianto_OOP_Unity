@@ -13,7 +13,7 @@ public class AttackComponent : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.tag);
+        // Debug.Log(other.tag);
 
         if (bullet != null && bullet.tag == other.tag)
         {

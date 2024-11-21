@@ -23,6 +23,8 @@ public class EnemyBoss : Enemy
     private readonly int maxSize = 100;
     private float timer;
     public Transform parentTransform;
+    
+    public int level = 4;
 
     private void Awake()
     {

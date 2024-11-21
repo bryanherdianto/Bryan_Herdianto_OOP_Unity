@@ -7,6 +7,8 @@ public class EnemyTargeting : Enemy
     private Rigidbody2D rb;
     private Transform player;
 
+    public int level = 3;
+
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
@@ -25,7 +27,7 @@ public class EnemyTargeting : Enemy
     {
         if (player == null) return;
 
-        Debug.Log(player.position);
+        // Debug.Log(player.position);
         Vector2 directionToPlayer = (player.position - transform.position).normalized;
 
         rb.velocity = directionToPlayer * speed;
@@ -33,8 +35,20 @@ public class EnemyTargeting : Enemy
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && other.gameObject.name != "Bullet(Clone)")
         {
+            EnemySpawner[] enemySpawners = FindObjectsOfType<EnemySpawner>();
+            foreach (EnemySpawner spawner in enemySpawners)
+            {
+                if (spawner.spawnedEnemy.name == gameObject.name.Replace("(Clone)", "").Trim())
+                {
+                    spawner.IncreaseKillCount();
+                }
+            }
+
+            CombatManager combatManager = FindObjectOfType<CombatManager>();
+            combatManager.totalEnemies--;
+
             Destroy(gameObject);
         }
     }

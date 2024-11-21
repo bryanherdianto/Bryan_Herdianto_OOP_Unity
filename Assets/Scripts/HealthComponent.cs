@@ -23,6 +23,18 @@ public class HealthComponent : MonoBehaviour
         health -= value;
         if (health < 0)
         {
+            EnemySpawner[] enemySpawners = FindObjectsOfType<EnemySpawner>();
+            foreach (EnemySpawner spawner in enemySpawners)
+            {
+                if (spawner.spawnedEnemy.name == gameObject.name.Replace("(Clone)", "").Trim())
+                {
+                    spawner.IncreaseKillCount();
+                }
+            }
+
+            CombatManager combatManager = FindObjectOfType<CombatManager>();
+            combatManager.totalEnemies--;
+
             Destroy(gameObject);
         }
     }
