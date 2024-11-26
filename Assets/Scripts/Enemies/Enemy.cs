@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public virtual int level { get; set; } = 1;
+
     // Start is called before the first frame update
     void Start()
     {

@@ -7,7 +7,7 @@ public class EnemyTargeting : Enemy
     private Rigidbody2D rb;
     private Transform player;
 
-    public int level = 3;
+    public override int level { get; set; } = 3;
 
     void Start()
     {

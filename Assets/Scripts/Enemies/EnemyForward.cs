@@ -6,9 +6,7 @@ public class EnemyForward : Enemy
     private Vector2 screenBounds;
     private Vector2 direction;
     private Rigidbody2D rb;
-
-    public int level = 1;
-
+    
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));

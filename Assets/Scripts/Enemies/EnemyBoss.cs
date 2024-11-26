@@ -24,7 +24,7 @@ public class EnemyBoss : Enemy
     private float timer;
     public Transform parentTransform;
     
-    public int level = 4;
+    public override int level { get; set; } = 4;
 
     private void Awake()
     {

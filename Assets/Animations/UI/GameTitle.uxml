@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:VisualElement name="Container" style="flex-grow: 1; -unity-text-align: upper-center;">
+            <ui:Label tabindex="-1" text="SpaceBattle" parse-escape-sequences="true" display-tooltip-when-elided="true" name="GameTitle" style="font-size: 150px; color: rgb(255, 255, 255); -unity-font-style: bold; margin-top: 59px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
